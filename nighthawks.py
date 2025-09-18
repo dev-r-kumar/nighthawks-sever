@@ -6,14 +6,6 @@ file_path = os.path.join(base_dir, "static", "license_metadata.json")
 panel_file_path = os.path.join(base_dir, "static", "metadata.json")
 
 
-def GetDiscordAuthKey():
-    with open(panel_file_path, 'r') as panel_data:
-        data = json.load(panel_data)
-
-    auth_key = data[0]['discord']['authorization_key']
-    return auth_key
-
-
 class Generator:
     def __init__(self):
         pass
@@ -61,10 +53,6 @@ class Handler:
         self.level_1 = level_1
         self.level_2 = level_2
 
-        self.nighthawks_discord_monitor = Discord(url="https://discord.com/api/v9/channels/1403239125041025134/messages", authorization_key=GetDiscordAuthKey())
-
-
-        self.nighthawks_discord_server = Discord(url="https://discord.com/api/v9/channels/1403220063821107250/messages", authorization_key=GetDiscordAuthKey())
        
 
 
@@ -107,8 +95,6 @@ class Handler:
                     with open(file_path, 'w') as updated_account:
                         json.dump(data, updated_account, indent=4)
 
-
-                    self.nighthawks_discord_server.prompt2Discord(f"[MESSAGE FROM NIGHTHAWKS PANEL] THANK YOU {data[ii]['username']} FOR PURCHASING OUR PRODUCT. YOUR SUBSCRIPTION IS NOW ACTIVATED ✅✅. Please Contact developer incase of any technical fault.")
 
 
                     return "Account registered successfully..."
@@ -157,7 +143,7 @@ class Handler:
 
 class NightHawks:
     def __init__(self):
-        self.nighthawks_discord_server = Discord(url="https://discord.com/api/v9/channels/1387027700702511214/messages", authorization_key=GetDiscordAuthKey())
+        pass
 
     def patchStatus(self, status):
         with open(panel_file_path, 'r') as panel_config:
@@ -168,10 +154,6 @@ class NightHawks:
         with open(panel_file_path, 'w') as new_panel_data:
             json.dump(data, new_panel_data, indent=4)
 
-        if (status == "0"):
-            self.nighthawks_discord_server.prompt2Discord("[NightHawks Server] Panel server is temporary shut down. This will result in: (Unable to inject any feature eg: Aimbot, Emulator Bypass, Macros or Sensi)") 
-        elif (status == "1"):
-            self.nighthawks_discord_server.prompt2Discord("[NightHawks Server] Panel server is now ready. All features are successfully restored. Enjoyyyy🔥🔥")
 
         return "Server Status Changed..."
 
@@ -254,26 +236,7 @@ class NightHawks:
         return "Right Shoulder Offset Patched..." 
     
 
-class Discord:
-    def __init__(self, url="", authorization_key=""):
-        self.url = url
-        self.authorizationKey = authorization_key
 
-    def generatePayload(self, message):
-        self.payload = {
-            "content": f'@everyone @here {message}'
-        }
-
-        return self.payload
-    
-    def prompt2Discord(self, message):
-        self.headers = {
-            "Authorization": self.authorizationKey
-        }
-
-        requests.post(self.url, self.generatePayload(message=message), headers=self.headers)
-
-        return "Message Sent..."
 
 
 class UIDBypass:
