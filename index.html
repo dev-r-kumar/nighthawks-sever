@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>License System</title>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>🦅 NightHawks Panel</h1>
+
+      <div class="tabs">
+        <button onclick="showTab('create')">Create License</button>
+        <button onclick="showTab('register')">Register</button>
+        <button onclick="showTab('login')">Login</button>
+        <button onclick="showTab('config')">Panel Config</button>
+      </div>
+
+      <div id="create" class="tab-content active">
+        <h2>Create License</h2>
+        <input type="text" id="note" placeholder="Note" />
+        <input type="number" id="level" placeholder="Level" />
+        <input type="number" id="duration" placeholder="Duration" />
+        <button onclick="createLicense()">Generate</button>
+        <p id="createResult"></p>
+      </div>
+
+      <div id="register" class="tab-content">
+        <h2>Register</h2>
+        <input type="text" id="regKey" placeholder="License Key" />
+        <input type="text" id="regUser" placeholder="Username" />
+        <input type="password" id="regPass" placeholder="Password" />
+        <button onclick="register()">Register</button>
+        <p id="registerResult"></p>
+      </div>
+
+      <div id="login" class="tab-content">
+        <h2>Login</h2>
+        <input type="text" id="loginUser" placeholder="Username" />
+        <input type="password" id="loginPass" placeholder="Password" />
+        <button onclick="login()">Login</button>
+        <p id="loginResult"></p>
+      </div>
+
+      <div id="duration" class="tab-content">
+        <h2>Account Duration</h2>
+        <input type="text" id="durUser" placeholder="Username" />
+        <input type="password" id="durPass" placeholder="Password" />
+        <button onclick="checkDuration()">Check</button>
+        <p id="durationResult"></p>
+      </div>
+
+      <div id="config" class="tab-content">
+        <h2>Panel Config</h2>
+
+        <input
+          type="text"
+          id="server-status"
+          placeholder="Panel Status [0 = off, 1 = on]"
+        />
+        <button onclick="patchStatus()">Patch Status</button>
+
+        <input type="text" id="pattern" placeholder="AOB Pattern" />
+        <button onclick="patchPattern()">Patch Pattern</button>
+
+        <input type="text" id="offsetHead" placeholder="Head Offset" />
+        <button onclick="patchHead()">Patch Head Offset</button>
+
+        <input type="text" id="offsetLeftEar" placeholder="Left Ear Offset" />
+        <button onclick="patchLeftEar()">Patch Left Ear</button>
+
+        <input type="text" id="offsetRightEar" placeholder="Right Ear Offset" />
+        <button onclick="patchRightEar()">Patch Right Ear</button>
+
+        <input
+          type="text"
+          id="offsetLeftShoulder"
+          placeholder="Left Shoulder Offset"
+        />
+        <button onclick="patchLeftShoulder()">Patch Left Shoulder</button>
+
+        <input
+          type="text"
+          id="offsetRightShoulder"
+          placeholder="Right Shoulder Offset"
+        />
+        <button onclick="patchRightShoulder()">Patch Right Shoulder</button>
+
+        <p id="patchResult"></p>
+      </div>
+    </div>
+
+    <script src="/static/nighthawks.js"></script>
+  </body>
+</html>
